@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import styled from 'styled-components';
-import Box, { StyledBox, BoxProps } from './Box';
+import { StyledBox, BoxProps } from './Box';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, BoxProps {
 
@@ -10,7 +10,9 @@ export const StyledButton = styled(StyledBox).attrs({ as: 'button' })
 .withConfig({
     shouldForwardProp: (prop) => !['c'].includes(prop),
 })<ButtonProps>`
-    color: ${(props) => props.c || '#000'};
+    color: ${(props) => props.c ? props.c : props.theme.color.primary};
+    margin: ${(props) => props.theme.spaces.m};
+
 `;
 
 
